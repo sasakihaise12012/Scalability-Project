@@ -3,8 +3,74 @@ const express = require('Express');
 const app = express();
 const bcrypt = require('bcrypt'); //for password hashing
 app.use(express.json());
+const jwt = require("jsonwebtoken");
 
+app.post("/login", async (req, res) => {
 
+try{
+
+const username = req.body.name;
+const password = req.body.pw;
+
+//if the name is not unique here then then extra code will need 
+//to be put in case the query outputs more than one row with the sama name
+
+const name_search = await db_connection.query('SELECT * FROM accounts WHERE name =$1', [username]);
+
+if (name_search.rows.length ==0){
+
+return res.status(401).json({error: "Invalid credentials *username not found through Server logic*",});
+}
+console.log("Error source probably?:", name_search);
+
+const user = name_search.rows[0];
+
+const isMatch = await bcrypt.compare(password, user.pw);
+
+if(isMatch == false){
+
+//console.log("isMatch value:", isMatch);
+
+res.status(401).json({error: 'Invalid credentials while comparing the password'});
+console.log("Login failed, unauthorized access!!");
+
+}else{
+
+res.json({output: "Login successful YAY!"});
+console.log("Login successful!!");
+//console.log("isMatch value:", isMatch);
+
+const id = user.id;
+const role_search = await db_connection.query('SELECT * FROM membership WHERE user_id =$1', [id]);
+
+membership= role_search.rows[0]
+
+const payload = {
+
+sub: id,
+role: membership.role,
+
+};
+
+const accessToken = jwt.sign(
+
+payload,
+process.env.JWT_SECRET,
+{
+ expiresIn: "15m"
+}
+
+);
+
+res.json({accessToken});
+
+}
+
+}catch(error){
+
+console.error("error at catch at server logic", error);
+res.status(500).json({error: "Login failed",
+})
 
 app.post('/register', async (req , res) => {
 
