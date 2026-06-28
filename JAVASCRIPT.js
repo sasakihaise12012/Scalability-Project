@@ -20,6 +20,10 @@ headers: {"Content-Type": "application/json"},
 body: JSON.stringify(body_sent)
 });
 
+const data = await response.json();
+
+
+
 }catch(error){
 
 console.log("Error at javascript regarding login", error);
