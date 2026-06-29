@@ -1,6 +1,8 @@
 const db_connection = require('./db');
 const express = require('Express');
+const cors = require('cors');
 const app = express();
+app.use(cors());
 const bcrypt = require('bcrypt'); //for password hashing
 app.use(express.json());
 const jwt = require("jsonwebtoken");
@@ -15,28 +17,28 @@ const password = req.body.pw;
 //if the name is not unique here then then extra code will need 
 //to be put in case the query outputs more than one row with the sama name
 
-const name_search = await db_connection.query('SELECT * FROM accounts WHERE name =$1', [username]);
+const name_search = await db_connection.query('SELECT * FROM users WHERE username =$1', [username]);
 
 if (name_search.rows.length ==0){
 
 return res.status(401).json({error: "Invalid credentials *username not found through Server logic*",});
 }
-console.log("Error source probably?:", name_search);
+//console.log("Error source probably?:", name_search);
 
 const user = name_search.rows[0];
 
-const isMatch = await bcrypt.compare(password, user.pw);
+const isMatch = await bcrypt.compare(password, user.hashed_password);
 
 if(isMatch == false){
 
 //console.log("isMatch value:", isMatch);
 
-res.status(401).json({error: 'Invalid credentials while comparing the password'});
+return res.status(401).json({error: 'Invalid credentials while comparing the password'});
 console.log("Login failed, unauthorized access!!");
 
 }else{
 
-res.json({output: "Login successful YAY!"});
+//cannot send more than one response, there is already one down there response =>res
 console.log("Login successful!!");
 //console.log("isMatch value:", isMatch);
 
@@ -62,6 +64,8 @@ process.env.JWT_SECRET,
 
 );
 
+console.log("membership role:", membership.role);
+
 res.cookie("Token", accessToken, {
 
 httpOnly: true,
@@ -70,8 +74,8 @@ sameSite: "lax", //Medium security prevents some attacks.
 maxAge: 60*60*1000 // One hour, calculates from milliseconds hence the "*1000"
 });
 
-res.json({success: true}); //makes json success True available in your browser.
-
+//you can only send one response for a single request, response => res.
+//res.json({success: true}); //makes json success True available in your browser.
 //res.json({accessToken});
 
 }
@@ -95,7 +99,7 @@ const salt_rounds = 10; //how hard to crack with relevance to how much computati
 
 const hashedPassword = await bcrypt.hash(password, salt_rounds);
 const identification=1;
-const result = await db_connection.query("INSERT INTO accounts (name, pw) VALUES ($1, $2)", [username, hashedPassword]
+const result = await db_connection.query("INSERT INTO users (username, hashed_password) VALUES ($1, $2)", [username, hashedPassword]
 );
 
 res.json({
