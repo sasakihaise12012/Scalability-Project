@@ -66,7 +66,7 @@ res.cookie("Token", accessToken, {
 
 httpOnly: true,
 secure: false, //sends to both http and https since this is a local website.
-sameSite: "lax" //Medium security prevents some attacks.
+sameSite: "lax", //Medium security prevents some attacks.
 maxAge: 60*60*1000 // One hour, calculates from milliseconds hence the "*1000"
 });
 
@@ -79,8 +79,9 @@ res.json({success: true}); //makes json success True available in your browser.
 }catch(error){
 
 console.error("error at catch at server logic", error);
-res.status(500).json({error: "Login failed",
-})
+res.status(500).json({error: "Login failed"})
+}
+});
 
 app.post('/register', async (req , res) => {
 
