@@ -1,0 +1,5 @@
+Make registration in a separate page called administration and allow it to input the role of 
+the user "admin, normal_user, etc"
+
+Since if users register themselves then they will not be able to choose which role they have
+and they will not be able to recieve the jwt token since it requires a role.

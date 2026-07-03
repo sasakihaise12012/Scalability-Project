@@ -7,6 +7,11 @@ const bcrypt = require('bcrypt'); //for password hashing
 app.use(express.json());
 const jwt = require("jsonwebtoken");
 
+
+const path = require("path");
+app.use(express.static(path.join(__dirname, "public")));
+
+
 app.post("/login", async (req, res) => {
 
 try{
@@ -66,13 +71,15 @@ process.env.JWT_SECRET,
 
 console.log("membership role:", membership.role);
 
+console.log("JWT token:", accessToken);
+
 res.cookie("Token", accessToken, {
 
 httpOnly: true,
 secure: false, //sends to both http and https since this is a local website.
 sameSite: "lax", //Medium security prevents some attacks.
 maxAge: 60*60*1000 // One hour, calculates from milliseconds hence the "*1000"
-});
+}).json({message: "Logged in"});
 
 //you can only send one response for a single request, response => res.
 //res.json({success: true}); //makes json success True available in your browser.
