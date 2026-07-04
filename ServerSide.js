@@ -100,6 +100,8 @@ try{
 
 const username = req.body.name;
 const password = req.body.pw;
+const role = req.body.role;
+
 console.log("name recieved at server side?:", username);
 
 const salt_rounds = 10; //how hard to crack with relevance to how much computational resource it takes the harder it is to crack
@@ -123,6 +125,30 @@ res.status(500).json({error: 'Damn!! at server logic registration failed.'});
 
 });
 
+app.post('/org', async (req , res) => {
+
+try{
+
+const role = req.body.role;
+
+console.log("name recieved at server side?:", username);
+
+const result = await db_connection.query("INSERT INTO organization (username) VALUES ($1)", [username]);
+
+
+res.json({
+     message: "new organization has entered the system!",
+     user: result.rows[0]});
+
+} catch(error){
+
+
+console.error("Error at server logic at", error);
+res.status(500).json({error: 'Damn!! at server logic organization failed.'});
+//res.status(500).json({error: 'server error'});
+}
+
+});
 
 
 app.listen(3000, () => {

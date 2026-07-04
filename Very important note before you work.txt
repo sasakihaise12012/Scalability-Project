@@ -3,3 +3,8 @@ the user "admin, normal_user, etc"
 
 Since if users register themselves then they will not be able to choose which role they have
 and they will not be able to recieve the jwt token since it requires a role.
+
+NOTE: use the role to determine what users see and what admins see, example: search for something from a 
+table that contains both user and admin stuff:
+
+"SELECT * FROM (Table name) Where role = ()" 
