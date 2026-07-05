@@ -37,15 +37,25 @@ async function register(){
 const username = document.getElementById("username").value;
 const password = document.getElementById("password").value;
 const user_role = document.getElementById("role").value;
+const organization = document.getElementById("org").value;
 
 const body_sent = {
 
 name: username,
 pw: password,
-role: user_role
+role: user_role,
+org: organization
 
 };
-console.log("role recieved at JAVASCRIPT side?:", user_role);
+
+/*if(username == null || password == null || user_role == null || organization ==null || username == "" || password == "" || user_role == "" || organization ==""){
+
+console.log("problem at first if condition in javascript.");
+return;
+
+}*\
+
+console.log("organization recieved at JAVASCRIPT side?:", organization);
 try{
 
 const response = await fetch(`http://localhost:3000/register`,{
@@ -68,7 +78,7 @@ const username = document.getElementById("username").value;
 
 const body_sent = {
 
-name: username,
+name: username
 
 };
 console.log("org recieved at JAVASCRIPT side?:", username);

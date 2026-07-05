@@ -1,10 +1,8 @@
-Make registration in a separate page called administration and allow it to input the role of 
-the user "admin, normal_user, etc"
-
-Since if users register themselves then they will not be able to choose which role they have
-and they will not be able to recieve the jwt token since it requires a role.
+Always make code for success and failure, for example, not only the user was registered in an organization, but also
+if the user registered in a *non-existing organization*, resulting in a error, or if the name of the organization was left empty.
 
 NOTE: use the role to determine what users see and what admins see, example: search for something from a 
 table that contains both user and admin stuff:
 
 "SELECT * FROM (Table name) Where role = ()" 
+

@@ -101,6 +101,7 @@ try{
 const username = req.body.name;
 const password = req.body.pw;
 const role = req.body.role;
+const org = req.body.org;
 
 console.log("name recieved at server side?:", username);
 
@@ -111,9 +112,29 @@ const identification=1;
 const result = await db_connection.query("INSERT INTO users (username, hashed_password) VALUES ($1, $2)", [username, hashedPassword]
 );
 
+//Getting the user's id for the membership's table
+
+const user_id = await db_connection.query('SELECT id FROM users WHERE username =$1 AND hashed_password= $2', [username, hashedPassword]);
+
+const user = BigInt(user_id.rows[0].id);
+
+//end of getting the user's id for the membership's table
+//Getting org_id from organization the user belongs to.
+
+const organization_id = await db_connection.query("SELECT id FROM organization WHERE username = $1", [org]);
+
+console.log("Namco org id:", organization_id.rows[0]);
+const org_id = BigInt(organization_id.rows[0].id);
+
+const membership_input = await db_connection.query("INSERT INTO membership (org_id, user_id, role) VALUES ($1, $2, $3)", [org_id, user, role]);
+
 res.json({
      message: "User created! wohoow!",
-     user: result.rows[0]});
+     user: result.rows[0]
+     
+});
+
+
 
 } catch(error){
 
