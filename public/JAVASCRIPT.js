@@ -48,12 +48,6 @@ org: organization
 
 };
 
-/*if(username == null || password == null || user_role == null || organization ==null || username == "" || password == "" || user_role == "" || organization ==""){
-
-console.log("problem at first if condition in javascript.");
-return;
-
-}*\
 
 console.log("organization recieved at JAVASCRIPT side?:", organization);
 try{
