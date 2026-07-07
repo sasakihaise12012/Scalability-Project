@@ -4,6 +4,13 @@ async function login(){
 const username = document.getElementById("username").value;
 const password = document.getElementById("password").value;
 
+if (username == "" || password == ""){
+
+console.log("cannot allow an empty input here");
+return;
+
+}
+
 const body_sent = {
 
 name: username,
@@ -49,6 +56,19 @@ org: organization
 };
 
 
+console.log("Here is the username from Javascript:", username);
+console.log("Here is the password from Javascript:", password);
+console.log("Here is the role from Javascript:", user_role);
+console.log("Here is the organization the user belongs to:", organization);
+
+if (username == "" || password == "" || user_role == "" || organization == ""){
+
+console.log("cannot allow an empty input here");
+return;
+
+}
+
+
 console.log("organization recieved at JAVASCRIPT side?:", organization);
 try{
 
@@ -69,6 +89,13 @@ console.log("Error at javascript regarding registration", error);
 async function create_org(){
 
 const username = document.getElementById("username").value;
+
+if (username == ""){
+
+console.log("cannot allow an empty input here");
+return;
+
+}
 
 const body_sent = {
 

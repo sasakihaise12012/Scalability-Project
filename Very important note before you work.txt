@@ -1,8 +1,7 @@
-Always make code for success and failure, for example, not only the user was registered in an organization, but also
-if the user registered in a *non-existing organization*, resulting in a error, or if the name of the organization was left empty.
-
 NOTE: use the role to determine what users see and what admins see, example: search for something from a 
 table that contains both user and admin stuff:
 
 "SELECT * FROM (Table name) Where role = ()" 
+
+If there was any data the user had been creating and the JWT token expired, will it vanish? or how to keep it?
 
