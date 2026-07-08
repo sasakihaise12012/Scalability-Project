@@ -1,0 +1,26 @@
+First and most important:
+
+Tasks and privileges to tasks, each organization can see its own tasks only, all the tasks are in the same table regardless
+of their organization. and when accessing tasks, the organization and the role are questioned and the query filters according
+to the organization's needs.
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+A rule:
+
+its mandatory to take at least two of the below.
+
+what you can do in extra time:
+in order:
+
+API rate limiting and API in a separate page since its closer to production
+Refresh Tokens since you are already in tokens
+CI/CD pipeline.
+File uploads which open up the ability to make them as background jobs.
+Explore Docker Deployment
+
+
+
+
+

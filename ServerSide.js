@@ -94,7 +94,7 @@ res.status(500).json({error: "Login failed"})
 }
 });
 
-app.post('/register', async (req , res) => {
+app.post('/register' , async (req , res) => {
 
 try{
 
@@ -134,7 +134,42 @@ res.json({
      
 });
 
+const name_search = await db_connection.query('SELECT * FROM users WHERE username =$1', [username]);
+const registered_user = name_search.rows[0];
+const id = registered_user.id;
 
+const role_search = await db_connection.query('SELECT * FROM membership WHERE user_id =$1', [id]);
+
+membership= role_search.rows[0]
+
+const payload = {
+
+sub: id,
+role: membership.role,
+
+};
+
+const accessToken = jwt.sign(
+
+payload,
+process.env.JWT_SECRET,
+{
+ expiresIn: "15m"
+}
+
+);
+
+console.log("membership role:", membership.role);
+
+console.log("JWT token:", accessToken);
+
+res.cookie("Token", accessToken, {
+
+httpOnly: true,
+secure: false, //sends to both http and https since this is a local website.
+sameSite: "lax", //Medium security prevents some attacks.
+maxAge: 60*60*1000 // One hour, calculates from milliseconds hence the "*1000"
+}).json({message: "Logged in"});
 
 } catch(error){
 
@@ -170,6 +205,34 @@ res.status(500).json({error: 'Damn!! at server logic organization failed.'});
 }
 
 });
+
+
+//call this function at each request to perform any action before the whole function that does that 
+//not before every action but before every function that does any action because if before every action
+//its too much work for the servers of the website.
+
+function confirm_auth(req,res){
+
+const token = req.cookies.accessToken;
+
+if(token = undefined){
+
+return res.status(401).send("Not authenticated");
+
+}
+
+try{
+	//this contains the payload of the token
+	const payload = jwt.verify(token, process.env.JWT_SECRET);
+	next();
+	
+}catch(err){
+
+return res.status(401).send("Invalid token");
+
+}
+
+}
 
 
 app.listen(3000, () => {

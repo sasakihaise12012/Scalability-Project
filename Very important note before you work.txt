@@ -1,7 +1,14 @@
+Current:
+Continue working on the confirmation of the jwt session time before any action.
+
 NOTE: use the role to determine what users see and what admins see, example: search for something from a 
 table that contains both user and admin stuff:
 
 "SELECT * FROM (Table name) Where role = ()" 
 
-If there was any data the user had been creating and the JWT token expired, will it vanish? or how to keep it?
+When the JWT Expires, you need to write more code in order to force logging him out.
 
+-------Big problem-------
+
+In this program or in another program, regardless of the fact that the user is logged in or out, he can use his functionalities.
+meaning that the authorization has no effect!

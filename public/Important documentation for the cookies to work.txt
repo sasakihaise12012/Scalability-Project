@@ -1,0 +1,6 @@
+index is : http://localhost:3000
+since index by its name is located and put in this website.
+
+files beside it are put by name and file type "html":
+
+http://localhost:3000/Administration_Webpage.html
