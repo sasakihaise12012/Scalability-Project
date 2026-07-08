@@ -1,10 +1,13 @@
 First and most important:
 
+Since you need the application ready if anything happened, for your cv, and you can add stuff to it afterwards save and update
+the cv.
 Tasks and privileges to tasks, each organization can see its own tasks only, all the tasks are in the same table regardless
 of their organization. and when accessing tasks, the organization and the role are questioned and the query filters according
 to the organization's needs.
 
-
+add the token authentication at every action you make (already ready but waiting for new actions that need authentication to 
+be connected.)
 ----------------------------------------------------------------------------------------------------------------------------
 
 A rule:

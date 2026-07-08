@@ -206,6 +206,14 @@ res.status(500).json({error: 'Damn!! at server logic organization failed.'});
 
 });
 
+//confirm_auth is a function below
+app.post("/projectsTasks", confirm_auth, (req, res) => { 
+
+
+
+
+
+});
 
 //call this function at each request to perform any action before the whole function that does that 
 //not before every action but before every function that does any action because if before every action
@@ -233,6 +241,8 @@ return res.status(401).send("Invalid token");
 }
 
 }
+
+
 
 
 app.listen(3000, () => {
