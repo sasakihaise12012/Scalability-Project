@@ -206,11 +206,35 @@ res.status(500).json({error: 'Damn!! at server logic organization failed.'});
 
 });
 
+
+
+
+
 //confirm_auth is a function below
 app.post("/projectsTasks", confirm_auth, (req, res) => { 
 
 
+try{
 
+const proj_name = req.body.proj_name;
+const task_name = req.body.task_name;
+const task_desc= req.body.desc;
+const status = req.body.status;
+const assigned_user_id = req.body.assigned_user_id;
+
+const membership = await db_connection.query('SELECT org_id from membership WHERE user_id = $1', [assigned_user_id]);
+
+const org_id = membership.rows[0].org_id;
+
+//next step is adding the project.
+//loop on the project names since no two projects should have the same name. also differentiate
+//between whether this is a new project or an existing project.
+
+}catch(err){
+
+res.status(500).json({error: 'Damn!! at server logic organization failed.'});
+
+}
 
 
 });

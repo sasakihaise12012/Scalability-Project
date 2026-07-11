@@ -124,6 +124,37 @@ console.log("Error at javascript regarding organization", error);
 
 async function enter_projects_or_tasks(){
 
+const project_name = document.getElementById("name").value;
+const task = document.getElementById("title").value;
+const description = document.getElementById("Description").value;
+const task_status = document.getElementById("status").value;
+const user_responsible_id = document.getElementById("user_responsible_id").value;
+
+const body_sent = {
+
+proj_name = project_name,
+task_name= task,
+desc = description,
+status= task_status,
+assigned_user_id= user_responsible_id
+
+}
+
+
+try{
+
+const response = await fetch(`http://localhost:3000/projectsTasks`,{
+
+method: "POST",
+headers: {"Content-Type": "application/json"},
+body: JSON.stringify(body_sent)
+});
+
+}catch(error){
+
+console.log("Error at javascript regarding function enter_projects_or_tasks()", error);
+
+}
 
 
 }

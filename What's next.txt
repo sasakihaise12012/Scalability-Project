@@ -1,0 +1,3 @@
+//next step is adding the project.
+//loop on the project names since no two projects should have the same name. also differentiate
+//between whether this is a new project or an existing project.
