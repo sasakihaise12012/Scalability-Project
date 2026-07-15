@@ -122,9 +122,9 @@ console.log("Error at javascript regarding organization", error);
 
 
 
-async function enter_projects_or_tasks(){
+async function enter_task(){
 
-const project_name = document.getElementById("name").value;
+const project_id = document.getElementById("project_id").value;
 const task = document.getElementById("title").value;
 const description = document.getElementById("Description").value;
 const task_status = document.getElementById("status").value;
@@ -132,18 +132,18 @@ const user_responsible_id = document.getElementById("user_responsible_id").value
 
 const body_sent = {
 
-proj_name = project_name,
-task_name= task,
-desc = description,
-status= task_status,
-assigned_user_id= user_responsible_id
+proj_id : project_id,
+task_name: task,
+desc: description,
+status: task_status,
+assigned_user_id: user_responsible_id
 
 }
 
 
 try{
 
-const response = await fetch(`http://localhost:3000/projectsTasks`,{
+const response = await fetch(`http://localhost:3000/tasks`,{
 
 method: "POST",
 headers: {"Content-Type": "application/json"},
@@ -152,9 +152,41 @@ body: JSON.stringify(body_sent)
 
 }catch(error){
 
-console.log("Error at javascript regarding function enter_projects_or_tasks()", error);
+console.log("Error at javascript regarding function enter_task() function", error);
 
 }
 
 
 }
+
+
+async function new_project(){
+
+const project_name = document.getElementById("new_project").value;
+const organization_id = document.getElementById("org_id").value;
+
+const body_sent = {
+
+proj_name: project_name,
+org_id: organization_id
+
+}
+
+try{
+
+const response = await fetch(`http://localhost:3000/newProjects`,{
+
+method: "POST",
+headers: {"Content-Type": "application/json"},
+body: JSON.stringify(body_sent)
+});
+
+}catch(error){
+
+console.log("Error at javascript regarding function new_project() function", error);
+
+}
+
+}
+
+
