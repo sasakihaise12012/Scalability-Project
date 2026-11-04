@@ -1,0 +1,123 @@
+#index-body{
+
+margin: 0;
+background-image: url("Images/index_image.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+box-sizing: border-box;
+min-height: 100vh;
+overflow-x: auto;
+overflow-y: auto;
+
+}
+
+#admin-body{
+
+margin: 0;
+background-image: url("Images/index_image.jpg");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+box-sizing: border-box;
+min-height: 100vh;
+overflow-x: auto;
+overflow-y: auto;
+
+}
+
+.navbar {
+
+    gap: 30px;
+    display: flex;
+    width: 100%;
+    padding: 20px 70px;
+    box-sizing: border-box;
+    margin-bottom: 60px;
+
+    background-color: #000000;
+}
+
+.navbar a {
+    
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding-left: 40px;
+    
+}
+
+#nav-links {
+
+
+
+}
+
+#main-container {
+    width: 82%;
+    max-width: 950px;
+    margin: 20px;
+    padding: 30px;
+    box-sizing: border-box;
+
+    background-color: #f1eded;
+    border-radius: 15px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+
+#projects-container{
+
+    
+    background-color: #AD9C9C;
+    overflow-x: auto;
+    overflow-y: auto;
+    border-radius: 15px;
+    padding: 8px;
+    
+
+}
+
+#Register-screen {
+
+	width:82%;
+	max-width: 950px;
+	margin: 20px;
+	padding: 30px;
+	box-sizing: border-box;
+
+	background-color: #f1eded;
+	border-radius: 15px;
+	overflow-x: auto;
+	overflow-y: auto;
+
+}
+
+
+#org-container {
+
+	width:82%;
+	max-width: 950px;
+	margin: 20px;
+	padding: 30px;
+	box-sizing: border-box;
+
+	background-color: #f1eded;
+	border-radius: 15px;
+	overflow-x: auto;
+	overflow-y: auto;
+
+}
+
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    
+
+    <script src="JAVASCRIPT.js" defer></script>
+    
+</head>
+<body>
+<div id=index-body>
+<div id ="main-container">
+
+<div id="login-screen" class="center-box">
+    <h2>Login Required</h2>
+
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+
+    <button onclick="login()">Login</button>
+
+    
+    </div>
+
+<br>
+<br>
+
+<div id="website-content" style = "display: none;">
+    <h2>Enter a new task.</h2>
+    <h3>Enter the project.</h3>
+
+    <input type="text" id="project_id" placeholder="Project's id" />
+    <br>
+    <h3>Enter the task</h3>
+    
+    <input type="Text" id="title" placeholder="title"/>
+    <input type="Text" id="Description" placeholder="Description"/>
+    <input type="Text" id="status" placeholder="status"/>
+    <input type="Text" id="user_responsible_id" placeholder="Responsible user's id"/>
+
+    <button onclick="enter_task()">Save</button>
+
+
+    <h2>Enter new project</h2>
+
+    <input type="text" id="new_project" placeholder="Project name" />
+    <!--is the ' allowed in placeholder? check it out-->
+
+    <button onclick="new_project()">Save</button>
+
+    
+
+<div id="get_all_projects">
+    <h2>Retrieve all projects</h2>
+    
+    <button onclick="get_projects()">Retrieve</button>
+    <div id = "projects-retrieved"></div>
+    </div>
+<br>
+<div id = "projects-container" style = "display: none;"></div>
+<br>
+<button onclick="logout()">Logout</button>
+
+</div>
+</div>
+</body>
+</html>

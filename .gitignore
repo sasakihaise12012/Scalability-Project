@@ -1,0 +1,23 @@
+
+# Environment variables and secrets
+.env
+*.dump
+.env.*
+!.env.example
+Online database information.txt
+Very important note before you work.txt
+What is left including html and css.txt
+What is next 24-9-2026.txt
+What's lef.txt
+New git branch name.txt
+
+# Node.js dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local operating system files
+.DS_Store
+Thumbs.db
