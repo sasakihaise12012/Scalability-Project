@@ -2,7 +2,22 @@ const path = require('path');
 require('dotenv').config({path: path.resolve(__dirname, './.env') });
 const { Pool }= require('pg');
 
-const pool = new Pool({
+let pool;
+
+if(process.env.DATABASE_URL){
+
+pool = new Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    });
+
+}
+
+else{
+
+pool = new Pool({
 
 	user: process.env.DB_USER,
 	host: process.env.DB_HOST,
@@ -11,4 +26,5 @@ const pool = new Pool({
 	port: process.env.DB_PORT,
 });
 
+}
 module.exports = pool;
