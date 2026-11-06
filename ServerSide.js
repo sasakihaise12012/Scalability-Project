@@ -295,9 +295,9 @@ const proj_id = req.body.proj_id;
 const task_name = req.body.task_name;
 const task_desc= req.body.desc;
 const status = req.body.status;
-const assigned_user_id = req.body.assigned_user_id;
+const user_id= req.user.sub;
 
-const membership = await db_connection.query('SELECT org_id from membership WHERE user_id = $1', [assigned_user_id]);
+const membership = await db_connection.query('SELECT org_id from membership WHERE user_id = $1', [req.user.sub]);
 
 const org_id = membership.rows[0].org_id;
 
@@ -306,7 +306,7 @@ const org_id = membership.rows[0].org_id;
 //this is an existing project, creating a new project is elsewhere.
 
 const task_creation = await db_connection.query('INSERT INTO tasks (project_id, title, description, status, assigned_user_id) VALUES ($1, $2, $3, $4, $5)', 
-[proj_id, task_name, task_desc, status, assigned_user_id]);
+[proj_id, task_name, task_desc, status, user_id]);
 
 }catch(err){
 
