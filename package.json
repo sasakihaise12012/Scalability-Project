@@ -2,7 +2,7 @@
   "name": "scalability",
   "version": "1.0.0",
   "description": "Node.js and PostgreSQL project",
-  "main": "ServerSide.js",
+  "main": "Server.js",
   "scripts": {
     "start": "node Server.js"
   },
