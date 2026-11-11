@@ -4,7 +4,7 @@
   "description": "Node.js and PostgreSQL project",
   "main": "ServerSide.js",
   "scripts": {
-    "start": "node ServerSide.js"
+    "start": "node Server.js"
   },
   "repository": {
     "type": "git",
